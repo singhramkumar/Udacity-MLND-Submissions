@@ -11800,7 +11800,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11852,7 +11852,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
@@ -11915,7 +11915,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -11997,7 +11997,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12068,7 +12068,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12149,18 +12149,24 @@ Testing set has 95 samples.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Answer:--"><strong>Answer: </strong> <a class="anchor-link" href="#Answer:--">&#182;</a></h2><h2 id="Decision-Trees">Decision Trees<a class="anchor-link" href="#Decision-Trees">&#182;</a></h2><p>Why:
-We have correlated Features in the dataset, and Decision tree does work well for such features. Also we don't know if the data is linearly separable or not. So Decision tree classifier looked simpler and easier way to try the classification.</p>
+<h2 id="Answer:--"><strong>Answer: </strong> <a class="anchor-link" href="#Answer:--">&#182;</a></h2><h2 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h2><p>Why:
+Logistic Regression classification model is a probabilistic model which maximize the posterior class probability. It is also suitable for binomial classification problem like this. Also as it is a high bias/low variance model, it Works well when we have large number of features in comparison to the number of data/sample. So it is a good choice for the problem at hand where the number of data is low but the feature space is relatively large</p>
 <p>Advantage:
-Easy to interpret and explain.
-Don’t have to worry if the data is linearly separable or not.
-Handle feature interaction well</p>
+If there's a lot of noise, logistic regression can handle it better.
+Logistic regression is intrinsically simple, it has low variance and so is less prone to over-fitting</p>
 <p>Disadvantage:
-Do not support online learning, so need to rebuild the tree if a new example comes in
-It can easily overfit.</p>
+Unlike SVM, it considers all the points in the data set. This may be not be a preferred approach for certain problems</p>
+<p>Real word problems : 
+Logistic regression works well for predicting binomial results(takes the value 0 or 1 like having or not having a disease) It is used in  medical fields, and social sciences for predicting binomial outcome. For Example :
+-The Trauma and Injury Severity Score (TRISS)-  used to predict mortality in injured patients.
+-To predict whether a patient has a given disease (e.g. diabetes; coronary heart disease), based on observed characteristics of the patient (age, sex, body mass index, results of various blood tests, etc.).
+-The technique can also be used in engineering,for predicting the probability of failure of a given process, system or product</p>
+<p>Source:  <a href="https://en.wikipedia.org/wiki/Logistic_regression">https://en.wikipedia.org/wiki/Logistic_regression</a></p>
 <hr>
-<h2 id="K-Nearest-Neighbors-(KNeighbors)">K-Nearest Neighbors (KNeighbors)<a class="anchor-link" href="#K-Nearest-Neighbors-(KNeighbors)">&#182;</a></h2><p>Why:
-Because the training set size is small and feature space is also small. KNN classification can be a good candidate for such scenario. Also we do not have to worry about the linear seaparability of the data</p>
+<h2 id="K-Nearest-Neighbours-(KNeighbors)">K-Nearest Neighbours (KNeighbors)<a class="anchor-link" href="#K-Nearest-Neighbours-(KNeighbors)">&#182;</a></h2><p>Why:
+Because the training set size is small so implementing instance based learning such as KNN<br>
+classification can be a good candidate for such scenario. Also we do not have to worry about<br>
+the linear seaparability of the data and implanting the model is very easy as well.</p>
 <p>Advantage: 
 Makes no assumption about the data distribution.
 Learning time is very low.
@@ -12171,9 +12177,17 @@ An easy algorithm to explain and implement</p>
 Slow during prediction. So difficult to use this for prediction in real time.
 Storage space can be a challenge if working on more data.
 Performance impact is high if more features are added (Curse of Dimensionality)</p>
+<p>Real world problems:
+KNN is suitable for the classification problems which has low number of dimention and low volume of data. It is suitable to the problems where  model is expected to adapt itself with new data and real time prediction is not needed. For Example:
+-KNN can solve the problems like pattern recognition used for theft prevention.
+-Many new transaction-scrutinizing software applications use kNN algorithms to spot unusual patterns that indicate suspicious activity. 
+-It can also be used to identify key partterns in customer purchage behaviour and subsequently increase customer satisfaction by anticipating customer behaviour.</p>
+<p>Source:  <a href="http://www.dummies.com/programming/big-data/data-science/solving-real-world-problems-with-nearest-neighbor-algorithms/">http://www.dummies.com/programming/big-data/data-science/solving-real-world-problems-with-nearest-neighbor-algorithms/</a></p>
 <hr>
 <h2 id="SVM">SVM<a class="anchor-link" href="#SVM">&#182;</a></h2><p>Why: 
-SVM performs well for most of the cases. It can be used with various Kernel to fit the non linear decision boundary as well. Various parameters can be tuned to get a high level of accuracy</p>
+SVM performs well for most of the cases. It can be used with various Kernel to fit the non<br>
+linear decision boundary as well. Various parameters can be tuned to get a high level of<br>
+accuracy</p>
 <p>Advantage
 High accuracy.
 By implementing Kernel Trick, we can inject the domain knowledge in the classifier.
@@ -12182,6 +12196,13 @@ With appropriate kernel, it can work well even if the data is not linearly separ
 Tuning the model for optimal parameters can be difficult.
 Memory-intensive.
 Hard to interpret</p>
+<p>Suitable for problems:
+SVM is used in various classification problems. For Example:
+-SVM is used in the problems document classification or document categorization.
+-Classification of images can also be performed using SVMs.
+-Hand-written characters can be recognized using SVM.
+-SVM have been used to classify proteins with up to 90% of the compounds classified correctly</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Support_vector_machine">https://en.wikipedia.org/wiki/Support_vector_machine</a></p>
 
 </div>
 </div>
@@ -12206,7 +12227,7 @@ Hard to interpret</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12279,17 +12300,19 @@ Hard to interpret</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
 <span class="c1">#from sklearn.naive_bayes import GaussianNB</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="c1">#from sklearn import tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">#clf_A = tree.DecisionTreeClassifier(random_state=3)</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">clf_B</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -12326,59 +12349,59 @@ Hard to interpret</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0020 seconds
+<pre>Training a LogisticRegression using a training set size of 100. . .
+Trained model in 0.2550 seconds
+Made predictions in 0.2720 seconds.
+F1 score for training set: 0.8244.
 Made predictions in 0.0000 seconds.
-F1 score for training set: 1.0000.
-Made predictions in 0.0000 seconds.
-F1 score for test set: 0.6393.
-Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0020 seconds
-Made predictions in 0.0010 seconds.
-F1 score for training set: 1.0000.
-Made predictions in 0.0010 seconds.
-F1 score for test set: 0.6719.
-Training a DecisionTreeClassifier using a training set size of 300. . .
+F1 score for test set: 0.7576.
+Training a LogisticRegression using a training set size of 200. . .
 Trained model in 0.0030 seconds
 Made predictions in 0.0000 seconds.
-F1 score for training set: 1.0000.
+F1 score for training set: 0.8429.
+Made predictions in 0.0000 seconds.
+F1 score for test set: 0.7704.
+Training a LogisticRegression using a training set size of 300. . .
+Trained model in 0.0060 seconds
 Made predictions in 0.0010 seconds.
-F1 score for test set: 0.6822.
+F1 score for training set: 0.8384.
+Made predictions in 0.0010 seconds.
+F1 score for test set: 0.7737.
 Training a KNeighborsClassifier using a training set size of 100. . .
-Trained model in 0.0010 seconds
-Made predictions in 0.0020 seconds.
+Trained model in 0.0220 seconds
+Made predictions in 0.0050 seconds.
 F1 score for training set: 0.8062.
-Made predictions in 0.0020 seconds.
+Made predictions in 0.0030 seconds.
 F1 score for test set: 0.7328.
 Training a KNeighborsClassifier using a training set size of 200. . .
-Trained model in 0.0060 seconds
-Made predictions in 0.0080 seconds.
+Trained model in 0.0020 seconds
+Made predictions in 0.0060 seconds.
 F1 score for training set: 0.8521.
-Made predictions in 0.0040 seconds.
+Made predictions in 0.0030 seconds.
 F1 score for test set: 0.7752.
 Training a KNeighborsClassifier using a training set size of 300. . .
-Trained model in 0.0020 seconds
-Made predictions in 0.0120 seconds.
+Trained model in 0.0010 seconds
+Made predictions in 0.0160 seconds.
 F1 score for training set: 0.8440.
-Made predictions in 0.0040 seconds.
+Made predictions in 0.0080 seconds.
 F1 score for test set: 0.7943.
 Training a SVC using a training set size of 100. . .
 Trained model in 0.0020 seconds
-Made predictions in 0.0000 seconds.
+Made predictions in 0.0020 seconds.
 F1 score for training set: 0.8289.
-Made predictions in 0.0000 seconds.
+Made predictions in 0.0010 seconds.
 F1 score for test set: 0.8000.
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0000 seconds
-Made predictions in 0.0160 seconds.
+Trained model in 0.0060 seconds
+Made predictions in 0.0040 seconds.
 F1 score for training set: 0.8618.
-Made predictions in 0.0000 seconds.
+Made predictions in 0.0020 seconds.
 F1 score for test set: 0.8514.
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0150 seconds
-Made predictions in 0.0000 seconds.
+Trained model in 0.0110 seconds
+Made predictions in 0.0120 seconds.
 F1 score for training set: 0.8529.
-Made predictions in 0.0160 seconds.
+Made predictions in 0.0040 seconds.
 F1 score for test set: 0.8356.
 </pre>
 </div>
@@ -12403,7 +12426,7 @@ F1 score for test set: 0.8356.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong> Classifer 1 - DecisionTreeClassifier </strong></p>
+<p><strong> Classifer 1 - LogisticRegression  </strong></p>
 <table>
 <thead><tr>
 <th style="text-align:center">Training Set Size</th>
@@ -12416,24 +12439,24 @@ F1 score for test set: 0.8356.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0020</td>
-<td style="text-align:center">0.0000</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0.6393</td>
+<td style="text-align:center">0.0030</td>
+<td style="text-align:center">0.0030</td>
+<td style="text-align:center">0.8244</td>
+<td style="text-align:center">0.7576</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0020</td>
-<td style="text-align:center">0.0000</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0.6719</td>
+<td style="text-align:center">0.0060</td>
+<td style="text-align:center">0.0030</td>
+<td style="text-align:center">0.8429</td>
+<td style="text-align:center">0.7704</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0030</td>
+<td style="text-align:center">0.0060</td>
 <td style="text-align:center">0.0010</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0.6822</td>
+<td style="text-align:center">0.8384</td>
+<td style="text-align:center">0.7737</td>
 </tr>
 </tbody>
 </table>
@@ -12535,8 +12558,7 @@ F1 score for test set: 0.8356.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Based of the avobe observation, I would have liked to pick SVM model, because the model is giving the highest testing F1_score among the other models. But considering the problem at hand where we have limited set of data, and simplicity of solution, I feel that the KNN is a better choice to go with.</p>
-<p>SVM is a low-bias / high variance model, which performs better wiht large set of data and more scalable than KNN, but for this perticular problem I do not see any major advantage of using SVM. Moreover by tuning the parameter of KNN we can improve the current F1-Score a bit more.</p>
+<p>Based of the avobe observation, I would have liked to pick SVM model, because the model is giving the highest testing F1_score among the other models. Training and prediction time is also comparable to other models in the experiment. Considering the proble where we have low volume of training data, and the performace and accuracy of SVM, it seems to be the best solution.</p>
 
 </div>
 </div>
@@ -12557,8 +12579,8 @@ F1 score for test set: 0.8356.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The algorithm finds a set of (say 5) students, who have similar attributes to the student in question,  and then take mean/vote of the results of these set of students. ie. if they passed the exam or not. Based on the behaviour of these similar set of students, the algorithm predicts whether the student in question will pass the exam or not.</p>
-<p>The model selected is a type of lazy learner, means we will not be doing any actual learning initially, but store it in some database. We look at the data for insight only during predicting an output.The model adapts to the new data as training is not needed to keep the model valid for new data</p>
+SVM is a classification model which tries to find a decision boundary to separate two classes of data points. It maximizes the margin between decision boundary and adjacent data points.  These data points which are near to the decision boundary, mainly affect the shape and position of the decision boundary, and are called Support Vectors.</p>
+<p>Large distance between the decision boundary and the samples makes the probability of misclassifying lower. For cases where the two classes of data are not linearly separable, the points are projected to higher dimensional space where linear separation could be possible. We use domain knowledge to transform these data by injecting Kernel functions in the SVM.  Then we train the model and tune the parameters to achieve best testing scores.</p>
 
 </div>
 </div>
@@ -12589,7 +12611,7 @@ The algorithm finds a set of (say 5) students, who have similar attributes to th
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12597,11 +12619,11 @@ The algorithm finds a set of (say 5) students, who have similar attributes to th
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
 
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
-<span class="c1">#parameters = {&#39;kernel&#39;:(&#39;linear&#39;, &#39;rbf&#39;), &#39;C&#39;:[1e-2, 1, 1e2], &#39;gamma&#39;:[1e-1, 1, 1e1]}</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;weights&#39;</span><span class="p">:(</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span><span class="s1">&#39;distance&#39;</span><span class="p">)}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kernel&#39;</span><span class="p">:(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">],</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:[</span><span class="mf">1e-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">]}</span>
+<span class="c1">#parameters = {&#39;n_neighbors&#39;: [3,10], &#39;weights&#39;:(&#39;uniform&#39;,&#39;distance&#39;)}</span>
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="c1">#clf = svm.SVC() </span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span> 
+<span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> 
+<span class="c1">#clf = KNeighborsClassifier() </span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span>  <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span> <span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
@@ -12630,10 +12652,10 @@ The algorithm finds a set of (say 5) students, who have similar attributes to th
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0170 seconds.
-Tuned model has a training F1 score of 1.0000.
-Made predictions in 0.0070 seconds.
-Tuned model has a testing F1 score of 0.8085.
+<pre>Made predictions in 0.0100 seconds.
+Tuned model has a training F1 score of 0.9734.
+Made predictions in 0.0030 seconds.
+Tuned model has a testing F1 score of 0.8289.
 </pre>
 </div>
 </div>
@@ -12657,8 +12679,8 @@ Tuned model has a testing F1 score of 0.8085.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> Final traning score: 1 , testing socre: 0.8085.
-The final training and testing score has improved after tuning the parameters. Although it seems to overfit the training data, but testing score has improved form earlier value.</p>
+<p><strong>Answer: </strong> Final traning score: 0.9734 , testing socre: 0.8289.
+The final training score has improved after tuning the parameters, although it seems to overfit the training data a bit.  Testing score has not improved form earlier value. But if we see the result closely, we can say that there is a large gap between training and testing scores, which suggests that the learning is not converged yet. So if we add more training data, we would improve the testing score as well.</p>
 
 </div>
 </div>
