@@ -69,7 +69,7 @@ class LearningAgent(Agent):
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
         
-        state = (inputs['light'] ,  inputs['oncoming'],  inputs['left'], inputs['right'], waypoint)
+        state = (inputs['light'] ,  inputs['oncoming'],  inputs['left'], waypoint)
 
         return state
 
@@ -132,9 +132,8 @@ class LearningAgent(Agent):
             if prob <= self.epsilon:
                 action = random.choice(self.valid_actions)
             else:
-                for act in self.valid_actions:
-                    if self.Q[state][act] == self.get_maxQ(state):
-                        return act
+                match = [(act) for act in self.Q[state] if self.Q[state][act]== self.get_maxQ(state)]
+                return random.choice(match)
             
             
             
@@ -204,7 +203,7 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.01, log_metrics=True, optimized = True)
+    sim = Simulator(env, update_delay=0.01, log_metrics=True, optimized= True)
     
     ##############
     # Run the simulator
