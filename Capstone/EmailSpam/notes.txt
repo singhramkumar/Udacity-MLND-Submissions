@@ -1,0 +1,92 @@
+http://scikit-learn.org/dev/tutorial/text_analytics/working_with_text_data.html
+
+SpamFilter using SpamAssasin Public Corpus , SVM classifier and dynamic spam word dataset  
+
+http://spamassassin.apache.org/old/publiccorpus/
+https://cambridgespark.com/content/tutorials/implementing-your-own-spam-filter/index.html
+http://rstudio-pubs-static.s3.amazonaws.com/267737_ab2d8a0b1a9a4792acd8f43c0c85561d.html
+https://cambridgespark.com/content/tutorials/implementing-your-own-spam-filter/index.html
+
+  - spam: 500 spam messages, all received from non-spam-trap sources.
+
+  - easy_ham: 2500 non-spam messages.  These are typically quite easy to
+    differentiate from spam, since they frequently do not contain any spammish
+    signatures (like HTML etc).
+
+  - hard_ham: 250 non-spam messages which are closer in many respects to
+    typical spam: use of HTML, unusual HTML markup, coloured text,
+    "spammish-sounding" phrases etc.
+
+  - easy_ham_2: 1400 non-spam messages.  A more recent addition to the set.
+
+  - spam_2: 1397 spam messages.  Again, more recent.
+
+Total count: 6047 messages, with about a 31% spam ratio.
+
+
+================================================================
+
+After extracting them, you
+should run the processEmail4 and emailFeatures functions on each email
+to extract a feature vector from each email. This will allow you to build a
+dataset X, y of examples. You should then randomly divide up the dataset
+into a training set, a cross validation set and a test set.
+
+While you are building your own dataset, we also encourage you to try
+building your own vocabulary list (by selecting the high frequency words
+
+that occur in the dataset) and adding any additional features that you think
+might be useful.
+Finally, we also suggest trying to use highly optimized SVM toolboxes
+such as LIBSVM.
+
+The original emails will have email headers that you might wish to leave out. We have
+included code in processEmail that will help you remove these headers.
+
+===============================================================
+
+
+NLTK has a corpus of stopwords for several languages including English, which you can import and use:
+
+from nltk.corpus import stopwords
+stoplist = stopwords.words(‘english’)
+
+
+
+==============================================================
+
+
+preprocess it using the function preprocess defined above.
+For each word that is not in the stopword list, either
+calculate how frequently it occurs in the text, or simply
+register the fact that the word occurs in the email.
+The former approach is called the bag-of-words (bow), and it allows the classifier to notice that certain keywords may occur in both types of emails but with different frequencies. Python's (https://docs.python.org/2/library/collections.html)(Counter subclass) allows to apply the bow model. To use the Counter subclass, add the import statement:
+from collections import Counter
+You can control which model you want to use with the parameter setting in the following code (the simple word occurrence model is the default):
+
+def get_features(text, setting):
+    if setting=='bow':
+        return {word: count for word, count in Counter(preprocess(text)).items() if not word in stoplist}
+    else:
+        return {word: True for word in preprocess(text) if not word in stoplist}
+The code above uses (https://docs.python.org/2/tutorial/datastructures.html)(dictionary comprehensions).
+
+Now you can extract the features from the emails and pair them with the email class label (“spam” or “ham”). Add the following line of code to the main part of the program if you want to use the bow model:
+
+    all_features = [(get_features(email, 'bow'), label) for (email, label) in all_emails]
+and the following one for the default model:
+
+    all_features = [(get_features(email, ''), label) for (email, label) in all_emails]
+
+
+
+============
+The spam detection algorithm will involve five steps:
+
+Lodaing the data,
+Preprocessing,
+Extracting the features,
+Training the classifier, and
+Evaluating the classifier.
+Let's get started!
+
