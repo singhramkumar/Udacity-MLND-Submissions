@@ -9,7 +9,7 @@ wordcloud
 
 -----------------
 
-To run this project few nltk Corpora and Models need to be downloade
+To run this project few nltk Corpora and Models need to be downloaded
 
 Use python console to run following command
 
