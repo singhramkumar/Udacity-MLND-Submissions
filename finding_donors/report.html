@@ -13057,7 +13057,7 @@ It is a ratio of true positives(words classified as spam, and which are actually
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">TP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="c1"># Counting the ones as this is the naive case. Note that &#39;income&#39; is the &#39;income_raw&#39; data </span>
@@ -13075,7 +13075,7 @@ It is a ratio of true positives(words classified as spam, and which are actually
 <span class="c1"># TODO: Calculate F-score using the formula above for beta = 0.5 and correct values for precision and recall.</span>
 
 <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">fscore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">beta</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span> <span class="n">precision</span><span class="p">)</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
+<span class="n">fscore</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">beta</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span> <span class="n">precision</span><span class="p">)</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
 
 <span class="c1"># Print the results </span>
 <span class="k">print</span> <span class="s2">&quot;Naive Predictor: [Accuracy score: {:.4f}, F-score: {:.4f}]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">fscore</span><span class="p">)</span>
@@ -13093,7 +13093,7 @@ It is a ratio of true positives(words classified as spam, and which are actually
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2334]
+<pre>Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </pre>
 </div>
 </div>
@@ -14200,7 +14200,7 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> 
 SVM is a classification model which tries to find a decision boundary to separate two classes of data points. It maximizes the margin between decision boundary and adjacent data points. These data points which are near to the decision boundary, mainly affect the shape and position of the decision boundary, and are called Support Vectors.</p>
-<p>Large distance between the decision boundary and the samples makes the probability of misclassifying lower. For cases where the two classes of data are not linearly separable, the points are projected to higher dimensional space where linear separation could be possible. We use domain knowledge to transform these data by injecting Kernel functions in the SVM. Then we train the model and tune the parameters to achieve best testing scores.</p>
+<p>Large distance between the decision boundary and the samples makes the probability of misclassifying lower. We can also inject domain knowledge to the model to find a curved decision boundry between datapoints. In this model we can also project the data points to a higher dimensional space and find a hyperplane  that separates instances into different categories.</p>
 
 </div>
 </div>
@@ -14239,6 +14239,7 @@ SVM is a classification model which tries to find a decision boundary to separat
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39;, &#39;make_scorer&#39;, and any other necessary libraries</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">grid_search</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+
 <span class="c1"># TODO: Initialize the classifier</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -14360,7 +14361,7 @@ Final F-score on the testing data: 0.6803
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>As per the table above, it is clear that the Optimized model is performing slightly better than the unoptimized model. Also if we comare with the benchmark predictor which has Accuracy score: 0.2478 and F-score: 0.2334, it is evident that the optimized model is perfoming much better that it.</p>
+<p>As per the table above, it is clear that the Optimized model is performing slightly better than the unoptimized model. Also if we comare with the benchmark predictor which has Accuracy score: 0.2478 and F-score: 0.2917, it is evident that the optimized model is perfoming much better that it.</p>
 
 </div>
 </div>
@@ -14394,13 +14395,13 @@ Final F-score on the testing data: 0.6803
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>Out of the 13 features available for an individual, I think education, occupation, capital-gain, capital-loss
-hours-per-week should be the most important features. I would rank them in below order becuase in my opinion these are the facors affecting a persons financial status in the same order.</p>
+hours-per-week should be the most important features. I would rank them in below order because in my opinion these are the factors affecting a person’s financial status in the same order.</p>
 <ol>
-<li>capital-gain</li>
-<li>capital-loss</li>
-<li>occupation</li>
-<li>hours-per-week</li>
-<li>education_num</li>
+<li>capital-gain - This factor contributes in determining whether a person will make more than $50000 or not. It has a direct impact on the amount made by a person in that year.</li>
+<li>capital-loss. Like capital-gain, capital-loss would also affect a person’s total earning, but in a negative way. So this is also an important feature to consider </li>
+<li>occupation: Occupation should influence the amount earned by a person. For example, a person  involved in an occupation of minimum wedge will not be able to make much money, however in a professional occupation a person might be paid higher.</li>
+<li>hours-per-week: Hours per week can be directly related to how much work hours a person would be paid in the year.</li>
+<li>education_num : This will provide an idea about the eligibility and competencies of a person, which indirectly affects a person's earning.</li>
 </ol>
 
 </div>
@@ -14773,7 +14774,7 @@ RU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
 Out of five features selected in Question 6, four are there in the important features suggested by the model as well.
-The visualization confirms my beleif about  the order of Capital Gain , Hours-per-week and education-num, but it suggests capital-loss as a more important feature than the capital-loss, which I had not thought earlier. Also I had selected "occupation" as an important feature but the model suggest "age" instead.</p>
+The visualization confirms my beleif about  the order of Capital Gain , Hours-per-week and education-num, but it suggests capital-loss as a more important feature than the capital-gain, which I had not thought earlier. Also I had selected "occupation" as an important feature but the model suggest "age" instead.</p>
 
 </div>
 </div>
